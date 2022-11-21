@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "experimentalDecorators": false,
+    "forceConsistentCasingInFileNames": true,
+    "removeComments": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "outDir": "./lib",
+    "allowJs": true,
+    "target": "es5",
+    "pretty": true,
+    "module": "commonjs",
+  },
+  "include": [
+    "./src",
+    "types/mcp-net.d.tsts"
+  ],
+  "typte": [
+    "node"
+  ]
+}
