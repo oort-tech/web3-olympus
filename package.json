@@ -1,11 +1,12 @@
 {
   "name": "web3-olympus",
   "version": "1.0.0",
-  "description": "",
+  "description": "A web3 utils for olympus.",
   "main": "lib/index.js",
+  "types": "types/index.d.ts",
   "scripts": {
     "test": "jest",
-    "compile": "tsc"
+    "compile": "tsc -b tsconfig.json"
   },
   "author": "catlina",
   "license": "LGPL-3.0",
