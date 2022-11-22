@@ -71,8 +71,8 @@ class OlympusRequest {
   stableBlocks(limit, index) {
     const payload = {
       action: "stable_blocks",
-      limit,
-      index
+      limit: String(limit),
+      index: String(index)
     };
 
     return this.call(payload);
@@ -154,7 +154,7 @@ class OlympusRequest {
   epochApproves(epoch) {
     const payload = {
       action: "epoch_approves",
-      epoch
+      epoch: String(epoch)
     };
 
     return this.call(payload);
@@ -164,7 +164,7 @@ class OlympusRequest {
   epochApproveReceipts(epoch) {
     const payload = {
       action: "epoch_approve_receipts",
-      epoch
+      epoch: String(epoch)
     };
 
     return this.call(payload);
@@ -174,7 +174,7 @@ class OlympusRequest {
   epochElectedApproveReceipts(epoch) {
     const payload = {
       action: "epoch_elected_approve_receipts",
-      epoch
+      epoch: String(epoch)
     };
 
     return this.call(payload);

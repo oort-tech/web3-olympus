@@ -15,7 +15,10 @@
   },
   "include": [
     "./src",
-    "types/mcp-net.d.tsts"
+    "types/interface.d.ts",
+    "types/index.d.ts",
+    "types/olympus-net.d.ts",
+    "types/helper.d.ts"
   ],
   "typte": [
     "node"

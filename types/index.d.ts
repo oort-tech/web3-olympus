@@ -5,43 +5,43 @@ export default class {
 
   call(payload: object): Promise<jsonRpcResponse>;
 
-  block(blockHash: string): Promise<jsonRpcResponse>;
+  block(blockHash: string): Promise<blockResponse>;
 
-  blockState(blockHash: string): Promise<jsonRpcResponse>;
+  blockState(blockHash: string): Promise<blockStateResponse>;
 
-  blockStates(blockHash: string): Promise<jsonRpcResponse>;
+  blockStates(blockHash: string): Promise<blockStatesResponse>;
 
-  blockTraces(blockHash: string): Promise<jsonRpcResponse>;
+  blockTraces(blockHash: string): Promise<blockTracesResponse>;
 
-  blockSummary(blockHash: string): Promise<jsonRpcResponse>;
+  blockSummary(blockHash: string): Promise<blockSummaryResponse>;
 
-  stableBlocks(limit: number, index: number): Promise<jsonRpcResponse>;
+  stableBlocks(limit: number, index: number): Promise<stableBlocksResponse>;
 
-  status(): Promise<jsonRpcResponse>;
+  status(): Promise<statusResponse>;
 
-  peers(): Promise<jsonRpcResponse>;
+  peers(): Promise<peersResponse>;
 
-  nodes(): Promise<jsonRpcResponse>;
+  nodes(): Promise<nodesResponse>;
 
-  witnessList(): Promise<jsonRpcResponse>;
+  witnessList(): Promise<witnessListResponse>;
 
-  version(): Promise<jsonRpcResponse>;
+  version(): Promise<versionResponse>;
 
   debugTraceTransaction(
     blockHash: string,
     options?: { disable_storage: boolean }
-  ): Promise<jsonRpcResponse>;
+  ): Promise<debugTraceTransactionResponse>;
 
   debugStorageRangeAt(options: {
     account: string;
     blockHash: string;
     begin: string;
     maxResults: number;
-  }): Promise<jsonRpcResponse>;
+  }): Promise<debugStorageRangeAtResponse>;
 
-  epochApproves(epoch: number): Promise<jsonRpcResponse>;
+  epochApproves(epoch: number): Promise<epochApprovesResponse>;
 
-  epochApproveReceipts(epoch: number): Promise<jsonRpcResponse>;
+  epochApproveReceipts(epoch: number): Promise<epochApproveReceiptsResponse>;
 
-  epochElectedApproveReceipts(epoch: number): Promise<jsonRpcResponse>;
+  epochElectedApproveReceipts(epoch: number): Promise<epochElectedApproveReceiptsResponse>;
 }
