@@ -1,18 +1,34 @@
-import Olympus from "../src";
+import Olympus from "../lib";
 
 const provider = "https://beta-rpc.mainnet.computecoin.com";
 
 const olympusRequest = new Olympus(provider);
 
-it("Should return block info.", async () => {
-  const result = await olympusRequest.block(
-    "0x152b24f5283322e113dfbb4a68c20658f779ff292361e6c56b4c81cef2a624af"
-  );
-  console.log(result);
-});
+describe("web3-olympus block chain test", function() {
+  describe("#block chain", function() {
+    it("Should return block chain status.", async () => {
+      const result = await olympusRequest.status();
+      expect(result.code).toBe(0);
+    });
 
-it("Should return block chain status.", async () => {
-  const result = await olympusRequest.status();
-  console.log(result);
-});
+    it("Should return block chain version.", async () => {
+      const result = await olympusRequest.version();
+      expect(result.code).toBe(0);
+    });
 
+    it("Should return block chain peers.", async () => {
+      const result = await olympusRequest.peers();
+      expect(result.code).toBe(0);
+    });
+
+    it("Should return block chain nodes.", async () => {
+      const result = await olympusRequest.nodes();
+      expect(result.code).toBe(0);
+    });
+
+    it("Should return block chain witness list.", async () => {
+      const result = await olympusRequest.witnessList();
+      expect(result.code).toBe(0);
+    });
+  });
+});

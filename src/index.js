@@ -41,7 +41,7 @@ class OlympusRequest {
   blockStates(blockHashes) {
     const payload = {
       action: "block_states",
-      hash: blockHashes
+      hashes: blockHashes
     };
 
     return this.call(payload);
@@ -138,10 +138,10 @@ class OlympusRequest {
   }
 
   // Acquire the data in storage after executing a transaction in a contract.
-  debugStorageRangeAt({ account, blockHash, begin, maxResults }) {
+  debugStorageRangeAt({ account, hash, begin, maxResults }) {
     const payload = {
       action: "debug_storage_range_at",
-      hash: blockHash,
+      hash: hash,
       account: account,
       begin: begin,
       max_results: maxResults

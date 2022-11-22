@@ -15,7 +15,6 @@
   },
   "include": [
     "./src",
-    "types/interface.d.ts",
     "types/index.d.ts",
     "types/olympus-net.d.ts",
     "types/helper.d.ts"
