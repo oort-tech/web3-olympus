@@ -13,12 +13,12 @@ describe("web3-olympus debug test", function() {
  
     it("Should return storage range result.", async () => {
       const result = await olympusRequest.debugStorageRangeAt({
-        hash: "0xdf986339ff2f1ccb6bf59e7efd46bfd84fb0a518be14dd897f3e6ed54aa15e8f",
+        hash: "0x46b037fe3043b4b27f05fec9db42eec8093673a788408264ea7a8e27fd38fb37",
         account: "0x7A045fB4388C9282D0ef73C97CE92ebcaAFeC550",
-        begin: "0x6C40A0bb49381b9f4bF699808D533536A6570B2a",
+        begin: "0x0000000000000000000000000000000000000000",
         max_results: 100
       });
-      console.log(result)
+      console.log(result);
       expect(result.code).toBe(0);
     });
   });

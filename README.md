@@ -1,4 +1,4 @@
-# web3-core-helpers
+# web3-olympus
 
 [![NPM Package][npm-image]][npm-url]
 
