@@ -106,10 +106,13 @@ class OlympusRequest {
   }
 
   // Retrieve the list of witnesses.
-  witnessList() {
+  witnessList(epoch) {
     const payload = {
-      action: "witness_list"
+      action: "witness_list",
     };
+    if (epoch != null && epoch > -1) {
+      payload.epoch = String(epoch)
+    }
 
     return this.call(payload);
   }
@@ -160,25 +163,15 @@ class OlympusRequest {
     return this.call(payload);
   }
 
-  // List the approve receipts for all approval messages that have been processed in the specified epoch.
-  epochApproveReceipts(epoch) {
+  approveReceipt(hash) {
     const payload = {
-      action: "epoch_approve_receipts",
-      epoch: String(epoch)
+      action: "approve_receipt",
+      hash: String(hash)
     };
 
     return this.call(payload);
   }
 
-  // Get the election result corresponding to the epoch.
-  epochElectedApproveReceipts(epoch) {
-    const payload = {
-      action: "epoch_elected_approve_receipts",
-      epoch: String(epoch)
-    };
-
-    return this.call(payload);
-  }
 }
 
 

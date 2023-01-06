@@ -1,4 +1,4 @@
-import { jsonRpcResponse } from "./helper";
+import { jsonRpcResponse } from './helper';
 
 interface block {
   hash: string;
@@ -161,27 +161,24 @@ interface debugStorageRangeAtResponse {
 }
 
 interface epochApprove {
+  hash: string;
   from: string;
   proof: string;
-  output?: string;
 }
 
 interface epochApprovesResponse {
   code: number;
   msg: string;
-  epoch_approves: epochApprove[];
+  result: epochApprove[];
 }
 
-interface epochApproveReceiptsResponse {
+interface approveReceiptResponse {
   code: number;
   msg: string;
-  epoch_approve_receipts: epochApprove[];
-}
-
-interface epochElectedApproveReceiptsResponse {
-  code: number;
-  msg: string;
-  epoch_elected_approve_receipts: epochApprove[];
+  result: {
+    from: string;
+    output: string;
+  };
 }
 
 export default class {
@@ -207,27 +204,15 @@ export default class {
 
   nodes(): Promise<nodesResponse>;
 
-  witnessList(): Promise<witnessListResponse>;
+  witnessList(epoch?: number): Promise<witnessListResponse>;
 
   version(): Promise<versionResponse>;
 
-  debugTraceTransaction(
-    blockHash: string,
-    options?: { disable_storage: boolean }
-  ): Promise<debugTraceTransactionResponse>;
+  debugTraceTransaction(blockHash: string, options?: { disable_storage: boolean }): Promise<debugTraceTransactionResponse>;
 
-  debugStorageRangeAt(options: {
-    account: string;
-    blockHash: string;
-    begin: string;
-    maxResults: number;
-  }): Promise<debugStorageRangeAtResponse>;
+  debugStorageRangeAt(options: { account: string; blockHash: string; begin: string; maxResults: number }): Promise<debugStorageRangeAtResponse>;
 
   epochApproves(epoch: number): Promise<epochApprovesResponse>;
 
-  epochApproveReceipts(epoch: number): Promise<epochApproveReceiptsResponse>;
-
-  epochElectedApproveReceipts(
-    epoch: number
-  ): Promise<epochElectedApproveReceiptsResponse>;
+  approveReceipt(hash: string): Promise<approveReceiptResponse>;
 }
