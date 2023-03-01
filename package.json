@@ -1,6 +1,6 @@
 {
   "name": "web3-olympus",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A web3 utils for olympus.",
   "author": "catlina",
   "main": "lib/index.js",
