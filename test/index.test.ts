@@ -1,6 +1,6 @@
 import Olympus from '../lib';
 
-const provider = 'https://beta-rpc.mainnet.computecoin.com';
+const provider = 'https://dev-rpc.oortech.com';
 
 const olympusRequest = new Olympus(provider);
 
