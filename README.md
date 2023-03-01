@@ -27,7 +27,7 @@ yarn add web3-olympus
 ```js
 const Olympus = require('web3-olympus');
 
-const provider = "https://beta-rpc.mainnet.computecoin.com";
+const provider = 'https://dev-rpc.oortech.com';
 
 const olympusRequest = new Olympus(provider);
 

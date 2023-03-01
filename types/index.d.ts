@@ -192,7 +192,7 @@ export default class {
 
   blockStates(blockHash: string): Promise<blockStatesResponse>;
 
-  blockTraces(blockHash: string): Promise<blockTracesResponse>;
+  blockTraces(transactionHash: string): Promise<blockTracesResponse>;
 
   blockSummary(blockHash: string): Promise<blockSummaryResponse>;
 
@@ -208,9 +208,7 @@ export default class {
 
   version(): Promise<versionResponse>;
 
-  debugTraceTransaction(blockHash: string, options?: { disable_storage: boolean }): Promise<debugTraceTransactionResponse>;
-
-  debugStorageRangeAt(options: { account: string; blockHash: string; begin: string; maxResults: number }): Promise<debugStorageRangeAtResponse>;
+  debugStorageRangeAt(options: { account: string; hash: string; begin: string; maxResults: number }): Promise<debugStorageRangeAtResponse>;
 
   epochApproves(epoch: number): Promise<epochApprovesResponse>;
 

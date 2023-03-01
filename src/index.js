@@ -1,4 +1,4 @@
-const OlympusNet = require("./olympus-net");
+const OlympusNet = require('./olympus-net');
 
 class OlympusRequest {
   constructor(provider) {
@@ -21,8 +21,8 @@ class OlympusRequest {
   // Get details of one block.
   block(blockHash) {
     const payload = {
-      action: "block",
-      hash: blockHash
+      action: 'block',
+      hash: blockHash,
     };
     return this.call(payload);
   }
@@ -30,8 +30,8 @@ class OlympusRequest {
   // Get state of a block
   blockState(blockHash) {
     const payload = {
-      action: "block_state",
-      hash: blockHash
+      action: 'block_state',
+      hash: blockHash,
     };
 
     return this.call(payload);
@@ -40,18 +40,18 @@ class OlympusRequest {
   // Get states of many blocks.
   blockStates(blockHashes) {
     const payload = {
-      action: "block_states",
-      hashes: blockHashes
+      action: 'block_states',
+      hashes: blockHashes,
     };
 
     return this.call(payload);
   }
 
   // Get the trace of internal transactions in a smart contract.
-  blockTraces(blockHash) {
+  blockTraces(transactionHash) {
     const payload = {
-      action: "block_traces",
-      hash: blockHash
+      action: 'block_traces',
+      hash: transactionHash,
     };
 
     return this.call(payload);
@@ -60,8 +60,8 @@ class OlympusRequest {
   // Retrieve the summary for a specific block.
   blockSummary(blockHash) {
     const payload = {
-      action: "block_summary",
-      hash: blockHash
+      action: 'block_summary',
+      hash: blockHash,
     };
 
     return this.call(payload);
@@ -70,9 +70,9 @@ class OlympusRequest {
   // Retrieve the stabled blocks for a specific mci value.
   stableBlocks(limit, index) {
     const payload = {
-      action: "stable_blocks",
+      action: 'stable_blocks',
       limit: String(limit),
-      index: String(index)
+      index: String(index),
     };
 
     return this.call(payload);
@@ -81,7 +81,7 @@ class OlympusRequest {
   // Retrieve the current status of DAG on the node.
   status() {
     const payload = {
-      action: "status"
+      action: 'status',
     };
 
     return this.call(payload);
@@ -90,7 +90,7 @@ class OlympusRequest {
   // List the peers connected to the node.
   peers() {
     const payload = {
-      action: "peers"
+      action: 'peers',
     };
 
     return this.call(payload);
@@ -99,7 +99,7 @@ class OlympusRequest {
   // List the nodes connected to the node.
   nodes() {
     const payload = {
-      action: "nodes"
+      action: 'nodes',
     };
 
     return this.call(payload);
@@ -108,10 +108,10 @@ class OlympusRequest {
   // Retrieve the list of witnesses.
   witnessList(epoch) {
     const payload = {
-      action: "witness_list",
+      action: 'witness_list',
     };
     if (epoch != null && epoch > -1) {
-      payload.epoch = String(epoch)
+      payload.epoch = String(epoch);
     }
 
     return this.call(payload);
@@ -120,21 +120,7 @@ class OlympusRequest {
   // Acquire the current node version, rpc interface version, and database version.
   version() {
     const payload = {
-      action: "version"
-    };
-
-    return this.call(payload);
-  }
-
-  // Interface for debugging transaction. Returns the opcode of a transaction and the stack and memory information when it is executesd.
-  debugTraceTransaction(blockHash, options) {
-    const payload = {
-      action: "debug_trace_transaction",
-      hash: blockHash
-    };
-
-    payload.options = options || {
-      disable_storage: false
+      action: 'version',
     };
 
     return this.call(payload);
@@ -143,11 +129,11 @@ class OlympusRequest {
   // Acquire the data in storage after executing a transaction in a contract.
   debugStorageRangeAt({ account, hash, begin, maxResults }) {
     const payload = {
-      action: "debug_storage_range_at",
+      action: 'debug_storage_range_at',
       hash: hash,
       account: account,
       begin: begin,
-      max_results: maxResults
+      max_results: maxResults,
     };
 
     return this.call(payload);
@@ -156,8 +142,8 @@ class OlympusRequest {
   // List the all approval messages that have been processed in the specified epoch.
   epochApproves(epoch) {
     const payload = {
-      action: "epoch_approves",
-      epoch: String(epoch)
+      action: 'epoch_approves',
+      epoch: String(epoch),
     };
 
     return this.call(payload);
@@ -165,14 +151,12 @@ class OlympusRequest {
 
   approveReceipt(hash) {
     const payload = {
-      action: "approve_receipt",
-      hash: String(hash)
+      action: 'approve_receipt',
+      hash: String(hash),
     };
 
     return this.call(payload);
   }
-
 }
-
 
 module.exports = OlympusRequest;
