@@ -1,5 +1,23 @@
 import { jsonRpcResponse } from './helper';
 
+interface accountImportResponse {
+  code: number;
+  msg: string;
+  account: string;
+}
+
+interface accountExportResponse {
+  code: number;
+  msg: string;
+  json: string;
+}
+
+interface accountRemoveResponse {
+  code: number;
+  msg: string;
+  json: string;
+}
+
 interface block {
   hash: string;
   from: string;
@@ -185,6 +203,12 @@ export default class {
   constructor(provider: string);
 
   call(payload: object): Promise<jsonRpcResponse>;
+
+  accountImport(json: string): Promise<accountImportResponse>;
+
+  accountExport(account: string): Promise<accountExportResponse>;
+
+  accountRemove(account: string, password: string): Promise<accountRemoveResponse>;
 
   block(blockHash: string): Promise<blockResponse>;
 

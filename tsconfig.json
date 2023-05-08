@@ -12,14 +12,8 @@
     "target": "es5",
     "pretty": true,
     "module": "commonjs",
+    "resolveJsonModule": true
   },
-  "include": [
-    "./src",
-    "types/index.d.ts",
-    "types/olympus-net.d.ts",
-    "types/helper.d.ts"
-  ],
-  "typte": [
-    "node"
-  ]
+  "include": ["./src", "types/index.d.ts", "types/olympus-net.d.ts", "types/helper.d.ts"],
+  "typte": ["node"]
 }
