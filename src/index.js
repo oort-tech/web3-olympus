@@ -18,6 +18,34 @@ class OlympusRequest {
     });
   }
 
+  // Import your keystore file to the remote node
+  accountImport(json) {
+    const payload = {
+      action: 'account_import',
+      json,
+    };
+    return this.call(payload);
+  }
+
+  // Export the keystore file managed in the node, provided that it has been imported.
+  accountExport(account) {
+    const payload = {
+      action: 'account_export',
+      account,
+    };
+    return this.call(payload);
+  }
+
+  // This function removes the keystore file imported through account_import, and the node is no longer responsible for managing the account.
+  accountRemove(account, password) {
+    const payload = {
+      action: 'account_remove',
+      account,
+      password,
+    };
+    return this.call(payload);
+  }
+
   // Get details of one block.
   block(blockHash) {
     const payload = {
