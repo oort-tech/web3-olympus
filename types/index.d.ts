@@ -214,7 +214,7 @@ export default class {
 
   blockState(blockHash: string): Promise<blockStateResponse>;
 
-  blockStates(blockHash: string): Promise<blockStatesResponse>;
+  blockStates(blockHash: string[]): Promise<blockStatesResponse>;
 
   blockTraces(transactionHash: string): Promise<blockTracesResponse>;
 
