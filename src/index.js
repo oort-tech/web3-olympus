@@ -155,7 +155,12 @@ class OlympusRequest {
   }
 
   // Acquire the data in storage after executing a transaction in a contract.
-  debugStorageRangeAt({ account, hash, begin, maxResults }) {
+  debugStorageRangeAt({
+    account,
+    hash,
+    begin,
+    maxResults
+  }) {
     const payload = {
       action: 'debug_storage_range_at',
       hash: hash,
@@ -181,6 +186,15 @@ class OlympusRequest {
     const payload = {
       action: 'approve_receipt',
       hash: String(hash),
+    };
+
+    return this.call(payload);
+  }
+
+  epochWorkTransaction(epoch) {
+    const payload = {
+      action: 'epoch_work_transaction',
+      epoch: String(epoch),
     };
 
     return this.call(payload);
