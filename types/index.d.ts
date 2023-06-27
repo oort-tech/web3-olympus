@@ -199,6 +199,12 @@ interface approveReceiptResponse {
   };
 }
 
+interface epochWorkTransactionResponse {
+  code: number;
+  msg: string;
+  result: string;
+}
+
 export default class {
   constructor(provider: string);
 
@@ -237,4 +243,6 @@ export default class {
   epochApproves(epoch: number): Promise<epochApprovesResponse>;
 
   approveReceipt(hash: string): Promise<approveReceiptResponse>;
+
+  epochWorkTransaction(epoch: number): Promise<epochWorkTransactionResponse>;
 }
