@@ -24,6 +24,7 @@ interface block {
   previous: string;
   parents: string[];
   links: string[];
+  approves: string[];
   last_stable_block: string;
   last_summary_block: string;
   last_summary: string;
@@ -196,6 +197,7 @@ interface approveReceiptResponse {
   result: {
     from: string;
     output: string;
+    status: string;
   };
 }
 
