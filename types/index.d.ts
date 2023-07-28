@@ -236,7 +236,7 @@ export default class {
 
   nodes(): Promise<nodesResponse>;
 
-  witnessList(epoch?: number): Promise<witnessListResponse>;
+  witnessList(epoch: number): Promise<witnessListResponse>;
 
   version(): Promise<versionResponse>;
 

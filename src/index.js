@@ -137,10 +137,8 @@ class OlympusRequest {
   witnessList(epoch) {
     const payload = {
       action: 'witness_list',
+      epoch: epoch != null && epoch > -1 ? String(epoch) : '0',
     };
-    if (epoch != null && epoch > -1) {
-      payload.epoch = String(epoch);
-    }
 
     return this.call(payload);
   }
@@ -155,12 +153,7 @@ class OlympusRequest {
   }
 
   // Acquire the data in storage after executing a transaction in a contract.
-  debugStorageRangeAt({
-    account,
-    hash,
-    begin,
-    maxResults
-  }) {
+  debugStorageRangeAt({ account, hash, begin, maxResults }) {
     const payload = {
       action: 'debug_storage_range_at',
       hash: hash,
