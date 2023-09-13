@@ -1,21 +1,15 @@
-import { jsonRpcResponse } from './helper';
+import { jsonRpcResponse } from "./helper";
 
 interface accountImportResponse {
-  code: number;
-  msg: string;
-  account: string;
-}
-
-interface accountExportResponse {
-  code: number;
-  msg: string;
-  json: string;
+  id: number;
+  jsonrpc: string;
+  result: string;
 }
 
 interface accountRemoveResponse {
-  code: number;
-  msg: string;
-  json: string;
+  id: number;
+  jsonrpc: string;
+  result: boolean;
 }
 
 interface block {
@@ -34,9 +28,9 @@ interface block {
 }
 
 interface blockResponse {
-  code: number;
-  msg: string;
-  block: block;
+  id: number;
+  jsonrpc: string;
+  result: block | null;
 }
 
 interface blockState {
@@ -58,15 +52,15 @@ interface blockState {
 }
 
 interface blockStateResponse {
-  code: number;
-  msg: string;
-  block_state?: blockState;
+  id: number;
+  jsonrpc: string;
+  result?: blockState;
 }
 
 interface blockStatesResponse {
-  code: number;
-  msg: string;
-  block_states: blockState[];
+  id: number;
+  jsonrpc: string;
+  result: Record<string, blockState>[];
 }
 
 interface blockTraces {
@@ -88,38 +82,43 @@ interface blockTraces {
 }
 
 interface blockTracesResponse {
-  code: number;
-  msg: string;
-  block_traces: blockTraces[];
+  id: number;
+  jsonrpc: string;
+  result: blockTraces[];
 }
 
-interface blockSummaryResponse {
-  code: number;
-  msg: string;
+interface blockSummary {
   summary: string;
   previous_summary: string;
   parent_summaries: string[];
-  link_summaries: string[];
   skiplist_summaries: string[];
   status: number;
 }
 
+interface blockSummaryResponse {
+  id: number;
+  jsonrpc: string;
+  result: blockSummary | null;
+}
+
 interface stableBlocksResponse {
-  code: number;
-  msg: string;
+  id: number;
+  jsonrpc: string;
   blocks: block[];
   next_index: number;
 }
 
 interface statusResponse {
-  code: number;
-  msg: string;
-  syncing: number;
-  last_stable_mci: number;
-  last_mci: number;
-  last_stable_block_index: number;
-  epoch: number;
-  epoch_period: number;
+  id: number;
+  jsonrpc: string;
+  result: {
+    syncing: number;
+    last_stable_mci: number;
+    last_mci: number;
+    last_stable_block_index: number;
+    epoch: number;
+    epoch_period: number;
+  };
 }
 
 interface peer {
@@ -128,29 +127,31 @@ interface peer {
 }
 
 interface peersResponse {
-  code: number;
-  msg: string;
-  peers: peer[];
+  id: number;
+  jsonrpc: string;
+  result: peer[];
 }
 
 interface nodesResponse {
-  code: number;
-  msg: string;
-  nodes: peer[];
+  id: number;
+  jsonrpc: string;
+  result: peer[];
 }
 
 interface witnessListResponse {
-  code: number;
-  msg: string;
-  witness_list: string[];
+  id: number;
+  jsonrpc: string;
+  result: string[];
 }
 
 interface versionResponse {
-  code: number;
-  msg: string;
-  version: string;
-  rpc_version: string;
-  store_version: string;
+  id: number;
+  jsonrpc: string;
+  result: {
+    version: string;
+    rpc_version: string;
+    store_version: string;
+  };
 }
 
 interface structLog {
@@ -164,21 +165,6 @@ interface structLog {
   depth: string;
 }
 
-interface debugTraceTransactionResponse {
-  code: number;
-  msg: string;
-  gas: string;
-  return_value: string;
-  struct_logs: structLog[];
-}
-
-interface debugStorageRangeAtResponse {
-  code: number;
-  msg: string;
-  next_key?: string;
-  storage?: object;
-}
-
 interface epochApprove {
   hash: string;
   from: string;
@@ -186,14 +172,14 @@ interface epochApprove {
 }
 
 interface epochApprovesResponse {
-  code: number;
-  msg: string;
+  id: number;
+  jsonrpc: string;
   result: epochApprove[];
 }
 
 interface approveReceiptResponse {
-  code: number;
-  msg: string;
+  id: number;
+  jsonrpc: string;
   result: {
     from: string;
     output: string;
@@ -202,9 +188,13 @@ interface approveReceiptResponse {
 }
 
 interface epochWorkTransactionResponse {
-  code: number;
-  msg: string;
-  result: string;
+  id: number;
+  jsonrpc: string;
+  result?: string;
+  error?: {
+    code: number;
+    message: string;
+  }
 }
 
 export default class {
@@ -214,9 +204,12 @@ export default class {
 
   accountImport(json: string): Promise<accountImportResponse>;
 
-  accountExport(account: string): Promise<accountExportResponse>;
+  accountExport(account: string): Promise<Error>;
 
-  accountRemove(account: string, password: string): Promise<accountRemoveResponse>;
+  accountRemove(
+    account: string,
+    password: string
+  ): Promise<accountRemoveResponse>;
 
   block(blockHash: string): Promise<blockResponse>;
 
@@ -240,7 +233,7 @@ export default class {
 
   version(): Promise<versionResponse>;
 
-  debugStorageRangeAt(options: { account: string; hash: string; begin: string; maxResults: number }): Promise<debugStorageRangeAtResponse>;
+  debugStorageRangeAt(): Promise<Error>;
 
   epochApproves(epoch: number): Promise<epochApprovesResponse>;
 

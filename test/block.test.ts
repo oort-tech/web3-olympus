@@ -7,33 +7,34 @@ const olympusRequest = new Olympus(provider);
 describe('web3-olympus block test', function () {
   describe('#block', function () {
     it('Should return block info.', async () => {
-      const result = await olympusRequest.block('0xe8e744dcc3f0ab085ba1f67cf00e46fb7d6798f141c404754d4f9bbe44f2e2b3');
-      expect(result.code).toBe(0);
+      const result = await olympusRequest.block('0x96b78c5487fa2c6751a27e1fca097e6ba60d5f17854ced0f36ba17f4dd4eea8b');
+      expect(result.result.hash).toBe("0x96b78c5487fa2c6751a27e1fca097e6ba60d5f17854ced0f36ba17f4dd4eea8b");
     });
 
     it('Should return block state.', async () => {
-      const result = await olympusRequest.blockState('0xe8e744dcc3f0ab085ba1f67cf00e46fb7d6798f141c404754d4f9bbe44f2e2b3');
-      expect(result.code).toBe(0);
+      const result = await olympusRequest.blockState('0x96b78c5487fa2c6751a27e1fca097e6ba60d5f17854ced0f36ba17f4dd4eea8b');
+      expect(result.result.is_stable).toBe(1);
     });
 
     it('Should return block states.', async () => {
-      const result = await olympusRequest.blockStates(['0xe8e744dcc3f0ab085ba1f67cf00e46fb7d6798f141c404754d4f9bbe44f2e2b3']);
-      expect(result.code).toBe(0);
+      const blockHash = '0x96b78c5487fa2c6751a27e1fca097e6ba60d5f17854ced0f36ba17f4dd4eea8b'
+      const result = await olympusRequest.blockStates([blockHash]);
+      expect(result.result[0][blockHash].is_stable).toBe(1);
     });
 
     it('Should return block traces.', async () => {
-      const result = await olympusRequest.blockTraces('0xe40f981407bc90de41b8b37167cefe148ae057794aad6dcd3410ec879fed2545');
-      expect(result.code).toBe(0);
+      const result = await olympusRequest.blockTraces('0x96b78c5487fa2c6751a27e1fca097e6ba60d5f17854ced0f36ba17f4dd4eea8b');
+      expect(result.result).toBeInstanceOf(Object);
     });
 
     it('Should return block summary.', async () => {
-      const result = await olympusRequest.blockSummary('0xe8e744dcc3f0ab085ba1f67cf00e46fb7d6798f141c404754d4f9bbe44f2e2b3');
-      expect(result.code).toBe(0);
+      const result = await olympusRequest.blockSummary('0x96b78c5487fa2c6751a27e1fca097e6ba60d5f17854ced0f36ba17f4dd4eea8b');
+      expect(result.result).toBeInstanceOf(Object);
     });
 
     it('Should return stable blocks.', async () => {
-      const result = await olympusRequest.stableBlocks(10, 12345);
-      expect(result.code).toBe(0);
+      const result = await olympusRequest.stableBlocks(0, 100);
+      expect(result.result.blocks).toBeInstanceOf(Array);
     });
   });
 });
