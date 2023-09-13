@@ -21,27 +21,26 @@ class OlympusRequest {
   // Import your keystore file to the remote node
   accountImport(json) {
     const payload = {
-      action: 'account_import',
-      json,
+      id: 1,
+      jsonrpc: '2.0',
+      method: 'account_import',
+      params: [json]
     };
     return this.call(payload);
   }
 
   // Export the keystore file managed in the node, provided that it has been imported.
-  accountExport(account) {
-    const payload = {
-      action: 'account_export',
-      account,
-    };
-    return this.call(payload);
+  accountExport() {
+    return new Error("accountExport has been removed from current version.")
   }
 
   // This function removes the keystore file imported through account_import, and the node is no longer responsible for managing the account.
   accountRemove(account, password) {
     const payload = {
-      action: 'account_remove',
-      account,
-      password,
+      id: 1,
+      jsonrpc: "2.0",
+      method: 'account_remove',
+      params: [account, password]
     };
     return this.call(payload);
   }
@@ -49,8 +48,10 @@ class OlympusRequest {
   // Get details of one block.
   block(blockHash) {
     const payload = {
-      action: 'block',
-      hash: blockHash,
+      id: 1,
+      jsonrpc: "2.0",
+      method: 'block',
+      params: [blockHash]
     };
     return this.call(payload);
   }
@@ -58,8 +59,10 @@ class OlympusRequest {
   // Get state of a block
   blockState(blockHash) {
     const payload = {
-      action: 'block_state',
-      hash: blockHash,
+      id: 1,
+      jsonrpc: "2.0",
+      method: 'block_state',
+      params: [blockHash]
     };
 
     return this.call(payload);
@@ -68,8 +71,10 @@ class OlympusRequest {
   // Get states of many blocks.
   blockStates(blockHashes) {
     const payload = {
-      action: 'block_states',
-      hashes: blockHashes,
+      id: 1,
+      jsonrpc: "2.0",
+      method: 'block_states',
+      params: [...blockHashes]
     };
 
     return this.call(payload);
@@ -78,8 +83,10 @@ class OlympusRequest {
   // Get the trace of internal transactions in a smart contract.
   blockTraces(transactionHash) {
     const payload = {
-      action: 'block_traces',
-      hash: transactionHash,
+      id: 1,
+      jsonrpc: "2.0",
+      method: 'block_traces',
+      params: [transactionHash]
     };
 
     return this.call(payload);
@@ -88,19 +95,22 @@ class OlympusRequest {
   // Retrieve the summary for a specific block.
   blockSummary(blockHash) {
     const payload = {
-      action: 'block_summary',
-      hash: blockHash,
+      id: 1,
+      jsonrpc: "2.0",
+      method: 'block_summary',
+      params: [blockHash]
     };
 
     return this.call(payload);
   }
 
   // Retrieve the stabled blocks for a specific mci value.
-  stableBlocks(limit, index) {
+  stableBlocks(index, limit) {
     const payload = {
-      action: 'stable_blocks',
-      limit: String(limit),
-      index: String(index),
+      id: 1,
+      jsonrpc: "2.0",
+      method: 'stable_blocks',
+      params: [String(index), String(limit)]
     };
 
     return this.call(payload);
@@ -109,7 +119,9 @@ class OlympusRequest {
   // Retrieve the current status of DAG on the node.
   status() {
     const payload = {
-      action: 'status',
+      id: 1,
+      jsonrpc: "2.0",
+      method: 'status',
     };
 
     return this.call(payload);
@@ -118,7 +130,9 @@ class OlympusRequest {
   // List the peers connected to the node.
   peers() {
     const payload = {
-      action: 'peers',
+      id: 1,
+      jsonrpc: "2.0",
+      method: 'peers',
     };
 
     return this.call(payload);
@@ -127,7 +141,9 @@ class OlympusRequest {
   // List the nodes connected to the node.
   nodes() {
     const payload = {
-      action: 'nodes',
+      id: 1,
+      jsonrpc: "2.0",
+      method: 'nodes',
     };
 
     return this.call(payload);
@@ -135,9 +151,12 @@ class OlympusRequest {
 
   // Retrieve the list of witnesses.
   witnessList(epoch) {
+    const newEpoch = epoch != null && epoch > -1 ? String(epoch) : '0';
     const payload = {
-      action: 'witness_list',
-      epoch: epoch != null && epoch > -1 ? String(epoch) : '0',
+      id: 1,
+      jsonrpc: "2.0",
+      method: 'witness_list',
+      params: [newEpoch]
     };
 
     return this.call(payload);
@@ -146,30 +165,26 @@ class OlympusRequest {
   // Acquire the current node version, rpc interface version, and database version.
   version() {
     const payload = {
-      action: 'version',
+      id: 1,
+      jsonrpc: "2.0",
+      method: 'version',
     };
 
     return this.call(payload);
   }
 
   // Acquire the data in storage after executing a transaction in a contract.
-  debugStorageRangeAt({ account, hash, begin, maxResults }) {
-    const payload = {
-      action: 'debug_storage_range_at',
-      hash: hash,
-      account: account,
-      begin: begin,
-      max_results: maxResults,
-    };
-
-    return this.call(payload);
+  debugStorageRangeAt() {
+    return new Error("debugStorageRangeAt has been removed from current version.");
   }
 
   // List the all approval messages that have been processed in the specified epoch.
   epochApproves(epoch) {
     const payload = {
-      action: 'epoch_approves',
-      epoch: String(epoch),
+      id: 1,
+      jsonrpc: "2.0",
+      method: 'epoch_approves',
+      params: [String(epoch)]
     };
 
     return this.call(payload);
@@ -177,8 +192,10 @@ class OlympusRequest {
 
   approveReceipt(hash) {
     const payload = {
-      action: 'approve_receipt',
-      hash: String(hash),
+      id: 1,
+      jsonrpc: "2.0",
+      method: 'approve_receipt',
+      params: [String(hash)]
     };
 
     return this.call(payload);
@@ -186,8 +203,10 @@ class OlympusRequest {
 
   epochWorkTransaction(epoch) {
     const payload = {
-      action: 'epoch_work_transaction',
-      epoch: String(epoch),
+      id: 1,
+      jsonrpc: "2.0",
+      method: 'epoch_work_transaction',
+      params: [String(epoch)]
     };
 
     return this.call(payload);
