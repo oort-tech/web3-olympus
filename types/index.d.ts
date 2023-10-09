@@ -84,6 +84,7 @@ interface blockTraces {
   };
   subtraces: number;
   trace_address: string[];
+  error?: string;
 }
 
 interface blockTracesResponse {
@@ -111,8 +112,7 @@ interface blockSummaryResponse {
 interface stableBlocksResponse {
   id: number;
   jsonrpc: string;
-  blocks: block[];
-  next_index: number;
+  result: { blocks: block[]; next_index: number }
   error?: { code: number; message: string };
 }
 
