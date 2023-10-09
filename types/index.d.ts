@@ -113,6 +113,7 @@ interface stableBlocksResponse {
   jsonrpc: string;
   blocks: block[];
   next_index: number;
+  error?: { code: number; message: string };
 }
 
 interface statusResponse {
