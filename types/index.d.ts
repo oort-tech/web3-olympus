@@ -4,12 +4,14 @@ interface accountImportResponse {
   id: number;
   jsonrpc: string;
   result: string;
+  error?: { code: number; message: string };
 }
 
 interface accountRemoveResponse {
   id: number;
   jsonrpc: string;
   result: boolean;
+  error?: { code: number; message: string };
 }
 
 interface block {
@@ -31,6 +33,7 @@ interface blockResponse {
   id: number;
   jsonrpc: string;
   result: block | null;
+  error?: { code: number; message: string };
 }
 
 interface blockState {
@@ -55,12 +58,14 @@ interface blockStateResponse {
   id: number;
   jsonrpc: string;
   result?: blockState;
+  error?: { code: number; message: string };
 }
 
 interface blockStatesResponse {
   id: number;
   jsonrpc: string;
   result: Record<string, blockState>[];
+  error?: { code: number; message: string };
 }
 
 interface blockTraces {
@@ -85,6 +90,7 @@ interface blockTracesResponse {
   id: number;
   jsonrpc: string;
   result: blockTraces[];
+  error?: { code: number; message: string };
 }
 
 interface blockSummary {
@@ -99,6 +105,7 @@ interface blockSummaryResponse {
   id: number;
   jsonrpc: string;
   result: blockSummary | null;
+  error?: { code: number; message: string };
 }
 
 interface stableBlocksResponse {
@@ -119,6 +126,7 @@ interface statusResponse {
     epoch: number;
     epoch_period: number;
   };
+  error?: { code: number; message: string };
 }
 
 interface peer {
@@ -130,18 +138,21 @@ interface peersResponse {
   id: number;
   jsonrpc: string;
   result: peer[];
+  error?: { code: number; message: string };
 }
 
 interface nodesResponse {
   id: number;
   jsonrpc: string;
   result: peer[];
+  error?: { code: number; message: string };
 }
 
 interface witnessListResponse {
   id: number;
   jsonrpc: string;
   result: string[];
+  error?: { code: number; message: string };
 }
 
 interface versionResponse {
@@ -152,6 +163,7 @@ interface versionResponse {
     rpc_version: string;
     store_version: string;
   };
+  error?: { code: number; message: string };
 }
 
 interface structLog {
@@ -175,6 +187,7 @@ interface epochApprovesResponse {
   id: number;
   jsonrpc: string;
   result: epochApprove[];
+  error?: { code: number; message: string };
 }
 
 interface approveReceiptResponse {
@@ -185,6 +198,7 @@ interface approveReceiptResponse {
     output: string;
     status: string;
   };
+  error?: { code: number; message: string };
 }
 
 interface epochWorkTransactionResponse {
