@@ -235,7 +235,7 @@ export default class {
 
   blockSummary(blockHash: string): Promise<blockSummaryResponse>;
 
-  stableBlocks(limit: number, index: number): Promise<stableBlocksResponse>;
+  stableBlocks(index: number, limit: number): Promise<stableBlocksResponse>;
 
   status(): Promise<statusResponse>;
 
