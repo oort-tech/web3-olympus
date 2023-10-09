@@ -84,6 +84,7 @@ interface blockTraces {
   };
   subtraces: number;
   trace_address: string[];
+  error?: string;
 }
 
 interface blockTracesResponse {
